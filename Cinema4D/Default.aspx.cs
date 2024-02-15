@@ -25,7 +25,7 @@ namespace Cinema4D
                 //cmd.CommandText = $"SELECT nome , count(*) from Prenotazionicinema group by tiposala , nome , idcliente";
                 cmd.CommandText = "select tiposala , count(*) as spettacoloprenotato from PrenotazioniCinema group by tiposala";
 
-                // eseguo il comando e ottengo un dataset 
+                // eseguo il comando e ottengo un dataset - se devo leggere un dataset uso reader
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
