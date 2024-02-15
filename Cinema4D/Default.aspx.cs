@@ -23,26 +23,33 @@ namespace Cinema4D
                 //query da inviare al server 
 
                 //cmd.CommandText = $"SELECT nome , count(*) from Prenotazionicinema group by tiposala , nome , idcliente";
-                cmd.CommandText = "SELECT * FROM Prenotazionicinema";
+                cmd.CommandText = "select tiposala , count(*) as spettacoloprenotato from PrenotazioniCinema group by tiposala";
 
                 // eseguo il comando e ottengo un dataset 
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
+
                 while (reader.Read())
                 {
-                    // int idcliente = Convert.ToInt32(reader.GetString(0));
-                    //string nome = reader.GetString(1);
-                    //string bigliettiVenduti = reader.GetString(2);
 
+                    string tiposala = reader.GetString(0);
+                    int spettacoloPrenotato = reader.GetInt32(1);
+
+                    contenitore.InnerHtml += $" <div>\r\n<p class='m-0'> Sala: {tiposala}</p> \r\n <a href='AcquirentiBiglietto.aspx?tipoSala={tiposala}' ><p class='m-0'> BigliettiAcquistati: {spettacoloPrenotato}</p> </a> \r\n  <p> Posti Rimanenti: {150 - spettacoloPrenotato} </p> </div>";
+
+                    /*
                     int IDcliente = Convert.ToInt32(reader["IDcliente"]);
                     string nome = reader.GetString(1);
                     string cognome = reader.GetString(2);
                     string tiposala = reader.GetString(3);
                     bool ridotto = reader.GetBoolean(4);
 
+                    string recordInfo = $"AcquistoNum: {IDcliente} - Nome: {nome} - Cognome: {cognome} - TipoSala: {tiposala} - PrezzoRidotto: {ridotto} <br>";
 
-                    clientiAcquistati.InnerHtml += $" AcquistoNum: {IDcliente} - Nome: {nome} - cognome: {cognome} - tipoSala: {tiposala} - prezzoRidotto: {ridotto} ";
+                    clientiAcquistati.InnerHtml += recordInfo;
+                    */
+
                 }
 
 
@@ -55,7 +62,6 @@ namespace Cinema4D
             finally
             {
                 conn.Close();
-
             }
 
         }
@@ -92,6 +98,7 @@ namespace Cinema4D
                 nome.Text = "";
                 cognome.Text = "";
                 CheckBox1.Checked = false;
+                Response.Redirect("Default.aspx");
             }
         }
     }

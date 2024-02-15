@@ -27,9 +27,10 @@
         <asp:Button class="btn btn-success" ID="Button1" runat="server" Text="Compra Biglietto"  OnClick="ConnettiAldb"/>
 
 
-        <div class="mt-5">
-           <p id="clientiAcquistati" runat="server"></p>
+        <div id="contenitore" runat="server" class="mt-5 d-flex flex-column gap-3 fs-4">
         </div>
+
+        
     </main>
 
 </asp:Content>
