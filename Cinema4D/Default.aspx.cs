@@ -85,6 +85,7 @@ namespace Cinema4D
                 cmd.Parameters.AddWithValue("@TipoSala", DropDownList1.SelectedValue);
                 cmd.Parameters.AddWithValue("@Ridotto", CheckBox1.Checked);
 
+                // se non restituisce un dataset uso questo comando 
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
