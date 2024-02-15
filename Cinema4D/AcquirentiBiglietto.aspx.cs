@@ -32,7 +32,7 @@ namespace Cinema4D
                     string cognome = reader.GetString(1);
 
                     //inserisco il template literals
-                    contenitoreDettagli.InnerHtml += $"<div class='d-flex my-3'>\r\n  <p>{nome} {cognome}</p>\r\n <button class='btn btn-danger'  CommandArgument='{nome}' AutoPostBack='true' OnCommand='Delete_Click'  > Cancella Utente </button> </div> ";
+                    contenitoreDettagli.InnerHtml += $"<div class='d-flex my-3'>\r\n  <p>{nome} {cognome}</p>\r\n  </div> ";
                 }
             }
             catch (Exception ex)
